@@ -54,9 +54,12 @@ artist1 = Artist.new({
           album4.save
           album5.save
 
-          all_artists = Artist.all
-          all_albums = Album.all
+album3.genre = "dark pop"
+album3.update
 
-          albums_by_artist = artist1.albums
+artist1.artist_name = "&"
+artist1.update
+
+
           binding.pry
           nil

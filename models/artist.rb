@@ -3,7 +3,8 @@ require_relative('../db/sql_runner')
 
 class Artist
 
-  attr_reader :id, :artist_name
+  attr_accessor :artist_name
+  attr_reader :id
 
   def initialize(options)
     @artist_name = options['artist_name']
@@ -32,4 +33,12 @@ class Artist
     album_hashes = SqlRunner.run(sql, [@id])
     return album_hashes.map{|album| Album.new(album)}
   end
+
+  def update
+    # SQL won't accept a single column name if it is in brackets. grrr.
+    sql = "UPDATE artists SET artist_name = $1"
+    values = [@artist_name]
+    SqlRunner.run(sql, values)
+  end
+
 end

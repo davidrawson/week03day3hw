@@ -36,8 +36,8 @@ class Artist
 
   def update
     # SQL won't accept a single column name if it is in brackets. grrr.
-    sql = "UPDATE artists SET artist_name = $1"
-    values = [@artist_name]
+    sql = "UPDATE artists SET artist_name = $1 WHERE id=$2"
+    values = [@artist_name, @id]
     SqlRunner.run(sql, values)
   end
 
